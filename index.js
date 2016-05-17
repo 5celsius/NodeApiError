@@ -1,6 +1,5 @@
 'use strict';
 
-//import httpStatus from 'http-status';
 var httpStatus = require('http-status');
 
 /**
@@ -29,10 +28,11 @@ class APIError extends ExtendableError {
 	 * @param {number} status - HTTP status code of error.
 	 * @param {boolean} isPublic - Whether the message should be visible to user or not.
 	 */
-	constructor(message, status = httpStatus.INTERNAL_SERVER_ERROR, isPublic = false) {
+	constructor(message, status, isPublic) {
+		status = status || httpStatus.INTERNAL_SERVER_ERROR;
+		isPublic = isPublic || false;
 		super(message, status, isPublic);
 	}
 }
 
-//export default APIError;
 module.exports = APIError;
